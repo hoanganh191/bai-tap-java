@@ -4,29 +4,55 @@
  */
 package Thu_Vien;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author hoanganh
  */
 public class QuanLySach {
     public static void main(String[] args) {
-        System.out.println("Nhap thong tin ve Sach");
-        Sach sgk = new Sach();
-        sgk.nhap();
-        System.out.println("");
-        System.out.println("Nhap thong tin ve Tap Chi");
-        TapChi tapChi1 = new TapChi();
-        tapChi1.nhap();
-        System.out.println("");
-        System.out.println("Nhap thong tin ve Bao");
-        Bao baoMoi = new Bao();
-        baoMoi.nhap();
-        System.out.println("");
-        System.out.println("Thong tin ve sach vua nhap la: ");
-        sgk.hienThi();
-        System.out.println("");
-        tapChi1.hienThi();
-        System.out.println("");
-        baoMoi.nhap();
+        ArrayList<TaiLieu> loaiSach = new ArrayList<>();
+        System.out.println("Nhap so sach muon nhap: ");
+        Scanner sc = new Scanner(System.in);
+        int soSach = sc.nextInt();
+        for(int i = 0; i < soSach; i++){
+            TaiLieu luuThongTin = null; //De bat dau moi vong lap thi object nay trong thong tin
+            System.out.println("Chọn loại tài liệu cho tài liệu thứ " + (i + 1) + ":");
+            System.out.println("1. Sach");
+            System.out.println("2. Tap chi");
+            System.out.println("3. Bao");
+            System.out.print("Lựa chọn: ");
+            int chon = sc.nextInt();
+            
+            switch(chon){
+                case 1:
+                    luuThongTin = new Sach();
+                    luuThongTin.nhap();
+                    loaiSach.add(luuThongTin);
+                    System.out.println("");
+                    break;
+                case 2:
+                    luuThongTin = new TapChi();
+                    luuThongTin.nhap();
+                    loaiSach.add(luuThongTin);
+                    System.out.println("");
+                    break;
+                case 3:
+                    luuThongTin = new Bao();
+                    luuThongTin.nhap();
+                    loaiSach.add(luuThongTin);
+                    System.out.println("");
+                    break;
+            }
+        }
+        
+        System.out.println("Thong tin cac loai sach vua nhap la: ");
+        for(TaiLieu b : loaiSach){
+            b.hienThi();
+            System.out.println("");
+        }
+
     }
 }
