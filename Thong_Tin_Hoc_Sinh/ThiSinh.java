@@ -41,5 +41,9 @@ public class ThiSinh {
         return 0 <= diem && diem <= 10; //dieu kien nhap diem dung 
     }
     
+    public boolean tim(String chuoiTim){
+        return (soBaoDanh.equalsIgnoreCase(chuoiTim));
+    }
+    
    
 }

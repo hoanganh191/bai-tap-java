@@ -16,13 +16,14 @@ public class TuyenSinh {
         ArrayList<ThiSinh> danhSach = new ArrayList<>();
         System.out.print("Nhap so luong hoc sinh muon nhap: ");
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        for(int i = 0; i < n; i++){
+        boolean nhapTiep = true;
+        while(nhapTiep){
             ThiSinh nhapThiSinh = null;
             System.out.println("Chon khoi thi cua thi sinh: ");
             System.out.println("1. Khoi A");
             System.out.println("2. Khoi B");
             System.out.println("3. Khoi C");
+            System.out.println("4. Thoat nhap");
             System.out.println("Nhap gia tri: ");
             int chon = sc.nextInt();
             switch(chon){
@@ -48,19 +49,29 @@ public class TuyenSinh {
                     break;
                     
                 default:
-                    System.out.println("Loi ban oi");
+                    System.out.println("--------------Da ket thuc nhap-------------");
+                    nhapTiep = false;
                     break;
             }
             
         }
         
-        System.out.println("Danh sach thi sinh vua nhap la: ");
-        for(ThiSinh i : danhSach){
-            i.hienThi();
+        
+        System.out.println("Danh sach ban vua nhap la: ");
+        for(ThiSinh x : danhSach){
+            x.hienThi();
             System.out.println("");
         }
-        
 
+        System.out.println("--------------------------------------------------");
+        //Tim kiem theo so bao danh
+        sc.nextLine();
+        System.out.print("Nhap so bao danh can tim: ");
+        String timKiem = sc.nextLine();
+        for(ThiSinh x : danhSach){
+            if(x.tim(timKiem)) x.hienThi();
+        }
+        
     }
     
 }
