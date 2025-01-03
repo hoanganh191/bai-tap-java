@@ -87,6 +87,9 @@ public class Dictionary {
             System.out.println("Khong ton tai tu do");
             System.out.println("Them tu vao tu dien");
             Word temp = new Word();
+            temp.nhap();
+            dictionary.dsTu.add(temp);
+            System.out.println("Them vao ArrayList thanh cong");
             
         }
     }
