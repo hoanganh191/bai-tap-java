@@ -1,0 +1,75 @@
+<style>
+  /* Kiểu dáng trái tim */
+  .snowflake {
+    color: #e04646;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px #000;
+    position: fixed;
+    top: -10%;
+    z-index: 9999;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+    will-change: transform, opacity;
+  }
+
+  /* Hiệu ứng rơi */
+  @keyframes snowflakes-fall {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 110vh, 0) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Hiệu ứng lung lay nhẹ */
+  @keyframes snowflakes-shake {
+    0%,
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    50% {
+      transform: translateX(30px) rotate(10deg);
+    }
+  }
+</style>
+
+<div class="snowflakes" aria-hidden="true"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const numHearts = 50; // Số lượng trái tim
+    const container = document.querySelector(".snowflakes");
+
+    for (let i = 0; i < numHearts; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("snowflake");
+
+      let innerHeart = document.createElement("div");
+      innerHeart.classList.add("inner");
+      innerHeart.innerHTML = "♥";
+
+      // Ngẫu nhiên hóa vị trí, tốc độ, xoay, kích thước
+      let leftPosition = Math.random() * 100; // Vị trí từ 0% đến 100%
+      let delay = Math.random() * 5; // Trễ rơi từ 0 đến 5 giây
+      let duration = 8 + Math.random() * 4; // Tốc độ rơi từ 8s đến 12s
+      let shakeDuration = 3 + Math.random() * 2; // Lung lay từ 3s đến 5s
+      let size = 0.8 + Math.random() * 0.6; // Kích thước từ 0.8 đến 1.4 lần
+      let opacity = 0.6 + Math.random() * 0.4; // Độ trong suốt từ 0.6 đến 1
+
+      // Áp dụng CSS động
+      heart.style.left = `${leftPosition}%`;
+      heart.style.opacity = opacity;
+      heart.style.transform = `scale(${size})`;
+      heart.style.animation = `snowflakes-shake ${shakeDuration}s infinite alternate ease-in-out`;
+      innerHeart.style.animation = `snowflakes-fall ${duration}s ${delay}s infinite linear`;
+
+      heart.appendChild(innerHeart);
+      container.appendChild(heart);
+    }
+  });
+</script>
